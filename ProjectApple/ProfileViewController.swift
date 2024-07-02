@@ -8,22 +8,34 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var birthDateLabel: UILabel!
+    @IBOutlet weak var contactInfoLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var signOutButton: UIButton!
+    
+    var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        configureInfoViewContoller()
     }
-    */
-
+    
+    func configureInfoViewContoller() {
+        profilePicture.image = user?.profilePicture
+        fullNameLabel.text = user?.fullName
+        birthDateLabel.text = user?.birthDate
+        contactInfoLabel.text = user?.contactInfo
+        bioLabel.text = user?.bio
+    }
+    
+    @IBAction func sigOut(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
